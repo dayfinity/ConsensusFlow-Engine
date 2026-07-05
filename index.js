@@ -103,4 +103,20 @@ const registry = new NodeRegistry();
 
 // Register validators with staking power
 registry.register("Node-A", 60);
-registry.registe
+registry.register("Node-B", 30);
+registry.register("Node-C", 80);
+registry.register("Node-D", 45);
+
+// Create consensus system
+const system = new ConsensusController(registry);
+
+// Create block proposals
+const block1 = system.proposeBlock("Transfer 10 coins", "Node-A");
+const block2 = system.proposeBlock("Reward distribution", "Node-C");
+
+// Run consensus cycle
+system.runConsensus(block1);
+system.runConsensus(block2);
+
+// Output final chain state
+system.showChain();
